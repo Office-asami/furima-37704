@@ -2,16 +2,16 @@
 
 ## Users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false, unique |
-| encrypted_password | string | null: false |
-| family_name        | string | null: false |
-| first_name         | string | null: false |
-| family_name_kana   | string | null: false |
-| first_name_kana    | string | null: false |
-| birth_day          | date   | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| family_name        | string | null: false               |
+| first_name         | string | null: false               |
+| family_name_kana   | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birth_day          | date   | null: false               |
 
 ## Association
 - has_many :items
@@ -60,7 +60,7 @@
 | address1           | string     | null: false                    |
 | address2           | string     |                                |
 | telephone          | string     | null: false                    |
-| buyers             | references | null: false, foreign_key: true |
+| buyer             | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to  :buyer
