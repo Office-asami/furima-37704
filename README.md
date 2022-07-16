@@ -60,7 +60,7 @@
 | address1           | string     | null: false                    |
 | address2           | string     |                                |
 | telephone          | string     | null: false                    |
-| buyer             | references | null: false, foreign_key: true |
+| buyer              | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to  :buyer
