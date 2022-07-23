@@ -5,8 +5,6 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-
-
   describe 'ユーザー新規登録' do
     # ユーザー新規登録についてのテストコードを記述します
     it 'nicknameが空では登録できない' do
@@ -28,7 +26,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Password can't be blank"
     end
-    
+
     it 'passwordとpassword_confirmationが不一致では登録できない' do
       @user.password = 'qwert1'
       @user.valid?
@@ -39,7 +37,7 @@ RSpec.describe User, type: :model do
       @user.password = 'qwerty'
       @user.password_confirmation = 'qwerty'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password is invalid"
+      expect(@user.errors.full_messages).to include 'Password is invalid'
     end
 
     it '重複したemailが存在する場合は登録できない' do
@@ -62,8 +60,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
-    
-
-
   end
 end
