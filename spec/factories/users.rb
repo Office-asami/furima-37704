@@ -8,6 +8,6 @@ FactoryBot.define do
     first_name            { '太郎' }
     family_name_kana      { 'タナカ' }
     first_name_kana       { 'タロウ' }
-    birth_day             { Faker::Date.backward }
+    birth_day             { '1a' + Faker::Date.backward }
   end
 end
