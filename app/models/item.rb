@@ -11,5 +11,7 @@ class Item < ApplicationRecord
 
   validates :title, :string, presence: true
   validates :genre_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  
+  validates :price, numericality: {greater_than: 299,less_than: 10000000}
+  VALID_PASSWORD_REGEX = /\A[0-9]+\z/.freeze
+  validates :price, format: { with: VALID_PASSWORD_REGEX }
 end
