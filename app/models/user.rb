@@ -18,5 +18,4 @@ class User < ApplicationRecord
   VALID_NAMEKANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
   validates :family_name_kana, format: { with: VALID_NAMEKANA_REGEX }
   validates :first_name_kana, format: { with: VALID_NAMEKANA_REGEX }
-
 end

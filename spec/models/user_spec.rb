@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-    context '新規登録できるとき'do
+    context '新規登録できるとき' do
       it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
         expect(@user).to be_valid
       end
     end
 
-    context '新規登録できないとき'do
+    context '新規登録できないとき' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
@@ -58,7 +58,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include 'Password is invalid'
       end
 
-
       it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -89,7 +88,7 @@ RSpec.describe User, type: :model do
       it '姓（全角）に半角文字が含まれていると登録できない' do
         @user.family_name = 'ﾀﾅｶ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name is invalid")
+        expect(@user.errors.full_messages).to include('Family name is invalid')
       end
 
       it '名（全角）が空だと登録できない' do
@@ -101,7 +100,7 @@ RSpec.describe User, type: :model do
       it '名（全角）に半角文字が含まれていると登録できない' do
         @user.first_name = 'ﾀﾛｳ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
 
       it '姓（カナ）が空だと登録できない' do
@@ -113,29 +112,26 @@ RSpec.describe User, type: :model do
       it '姓（カナ）にカタカナ以外の文字（平仮名）が含まれていると登録できない' do
         @user.family_name_kana = 'ひらがな'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name kana is invalid")
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
       end
 
       it '姓（カナ）にカタカナ以外の文字（漢字）が含まれていると登録できない' do
         @user.family_name_kana = '漢字'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name kana is invalid")
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
       end
 
       it '姓（カナ）にカタカナ以外の文字（英数字）が含まれていると登録できない' do
         @user.family_name_kana = '123a'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name kana is invalid")
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
       end
 
       it '姓（カナ）にカタカナ以外の文字（記号）が含まれていると登録できない' do
         @user.family_name_kana = '!!!!'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name kana is invalid")
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
       end
-
-
-
 
       it '名（カナ）が空だと登録できない' do
         @user.first_name_kana = ''
@@ -146,25 +142,25 @@ RSpec.describe User, type: :model do
       it '名（カナ）にカタカナ以外の文字（平仮名）が含まれていると登録できない' do
         @user.first_name_kana = 'ひらがな'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
 
       it '名（カナ）にカタカナ以外の文字（漢字）が含まれていると登録できない' do
         @user.first_name_kana = '漢字'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
 
       it '名（カナ）にカタカナ以外の文字（英数字）が含まれていると登録できない' do
         @user.first_name_kana = '123a'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
 
       it '名（カナ）にカタカナ以外の文字（記号）が含まれていると登録できない' do
         @user.first_name_kana = '!!!'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
 
       it '生年月日が空だと登録できない' do
@@ -172,7 +168,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
       end
-
-    end  
+    end
   end
 end

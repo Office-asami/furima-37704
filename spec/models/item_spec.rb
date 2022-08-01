@@ -6,14 +6,13 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品新規登録' do
-
-    context '新規登録できるとき'do
+    context '新規登録できるとき' do
       it '商品名、商品説明、カテゴリ、商品の状態、配送料負担情報、発送元地域情報、発送までの日数情報、300円以上一千万円未満の価格情報があれば登録できる' do
         expect(@item).to be_valid
       end
     end
- 
-    context '新規登録できないとき'do
+
+    context '新規登録できないとき' do
       it '商品画像を1つもつけられていないと登録できない' do
         @item.image = nil
         @item.valid?
@@ -57,24 +56,23 @@ RSpec.describe Item, type: :model do
       it '価格の情報がないと登録できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
       it '価格が300円未満であると登録できない' do
         @item.price = 100
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be greater than 299"
+        expect(@item.errors.full_messages).to include 'Price must be greater than 299'
       end
       it '価格が10,000,000円以上であると登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be less than 10000000"
+        expect(@item.errors.full_messages).to include 'Price must be less than 10000000'
       end
       it '価格が半角英数以外であると登録できない' do
         @item.price = '１２３４'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
     end
-
   end
 end
