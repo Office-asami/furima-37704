@@ -26,20 +26,19 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     if '購入済みでない'
-      unless current_user.id == @item.user.id
-        redirect_to root_path
-      end
-    else '購入済みであるとき'
-        redirect_to root_path
+      redirect_to root_path unless current_user.id == @item.user.id
+    else
+      '購入済みであるとき'
+      redirect_to root_path
     end
   end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-       redirect_to "/items/#{params[:id]}"
+      redirect_to "/items/#{params[:id]}"
     else
-       render :edit
+      render :edit
     end
   end
 
