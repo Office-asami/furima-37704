@@ -21,14 +21,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def edit
-    if '購入済みでない'
+    if 
       redirect_to root_path unless current_user.id == @item.user.id
     else
-      '購入済みであるとき'
       redirect_to root_path
     end
   end
