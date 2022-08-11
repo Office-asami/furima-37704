@@ -9,7 +9,6 @@ class BuyerShipping
     validates :zip_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :telephone, format: {with: /\A[0-9]{9,10}/\z/, message: "is invalid. Can't Include hyphen(-)"}
   end
-  
 
   def save
     buyer = Buyer.create(user_id: user_id, item_id: item_id)
