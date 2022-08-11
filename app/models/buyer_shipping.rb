@@ -12,7 +12,8 @@ class BuyerShipping
   
 
   def save
-
+    buyer = Buyer.create(user_id: user_id, item_id: item_id)
+    Shipping.create(zip_code: zip_code, prefecture: prefecture, city: city, address1: address1, address2: address2, telephone: telephone, buyer_id: buyer.id)
   end
 
 end
