@@ -4,10 +4,10 @@ class BuyerShipping
 
 
   with_options presence: true do
-    validates :user_id #:item_id
+    validates :user_id, :city, :address1
     validates :prefecture_id, numericality: {only_integer: true, other_than: 1 , message: "can't be blank"}
     validates :zip_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :telephone, format: {with: /\d{9,10}/, message: "is invalid. Can't Include hyphen(-)"}
+    validates :telephone, format: {with: /\A\d{10,11}\z/, message: "is invalid. Can't Include hyphen(-)"}
   end
 
   def save
