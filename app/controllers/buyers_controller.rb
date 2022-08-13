@@ -14,8 +14,7 @@ class BuyersController < ApplicationController
   def create
     @buyer_shipping = BuyerShipping.new(buyer_params)
     if @buyer_shipping.valid?
-      # @item = Item.find(params[:item_id])
-      Payjp.api_key = 'sk_test_292b681c66743e76f39e6c20'
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item[:price],
         card: buyer_params[:token],
@@ -24,7 +23,6 @@ class BuyersController < ApplicationController
       @buyer_shipping.save
       redirect_to root_path
     else
-      # @item = Item.find(params[:item_id])
       render :index
     end
   end
