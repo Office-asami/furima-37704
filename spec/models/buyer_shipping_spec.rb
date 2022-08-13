@@ -8,7 +8,7 @@ RSpec.describe BuyerShipping, type: :model do
     end
 
     context '内容に問題ない場合' do
-      it 'すべての値が正しく入力されていれば保存できること' do
+      it 'トークンを含めて、すべての値が正しく入力されていれば保存できること' do
         expect(@buyer_shipping).to be_valid
       end
       it 'address2は空でも保存できること' do
@@ -62,6 +62,11 @@ RSpec.describe BuyerShipping, type: :model do
         @buyer_shipping.telephone = '020-4512-3451'
         @buyer_shipping.valid?
         expect(@buyer_shipping.errors.full_messages).to include("Telephone is invalid. Can't Include hyphen(-)")
+      end
+      it 'トークンが空では保存できないこと' do
+        @buyer_shipping.token = nil
+        @buyer_shipping.valid?
+        expect(@buyer_shipping.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
