@@ -1,3 +1,3 @@
 class Shipping < ApplicationRecord
-  belongs_to  :buyer
+  belongs_to :buyer
 end

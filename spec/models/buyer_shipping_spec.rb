@@ -26,10 +26,10 @@ RSpec.describe BuyerShipping, type: :model do
       it '郵便番号が「3桁ハイフン4桁」の半角文字列の正しい形式でないと保存できないこと' do
         @buyer_shipping.zip_code = '1234567'
         @buyer_shipping.valid?
-        expect(@buyer_shipping.errors.full_messages).to include("Zip code is invalid. Include hyphen(-)")
+        expect(@buyer_shipping.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
       end
       it 'prefectureを選択していないと保存できないこと' do
-        @buyer_shipping.prefecture_id= '1'
+        @buyer_shipping.prefecture_id = '1'
         @buyer_shipping.valid?
         expect(@buyer_shipping.errors.full_messages).to include("Prefecture can't be blank")
       end
