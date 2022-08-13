@@ -4,8 +4,11 @@ class BuyersController < ApplicationController
   before_action :check_user, only: [:index]
 
   def index
-    # @item = Item.find(params[:item_id])
-    @buyer_shipping = BuyerShipping.new
+    if @item.buyer.present?
+      redirect_to root_path
+    else
+      @buyer_shipping = BuyerShipping.new
+    end
   end
 
   def new
