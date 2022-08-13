@@ -11,6 +11,13 @@ class BuyersController < ApplicationController
   def create
     @buyer_shipping = BuyerShipping.new(buyer_params)
     if @buyer_shipping.valid?
+      @item = Item.find(params[:item_id]) 
+      Payjp.api_key = "sk_test_292b681c66743e76f39e6c20"
+      Payjp::Charge.create(
+        amount: @item[:price],
+        card: buyer_params[:token],
+        currency: 'jpy'
+      )
       @buyer_shipping.save
       redirect_to root_path
     else
@@ -23,7 +30,7 @@ class BuyersController < ApplicationController
   private
 
   def buyer_params
-    params.require(:buyer_shipping).permit(:zip_code, :prefecture_id, :city, :address1, :address2, :telephone).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:buyer_shipping).permit(:zip_code, :prefecture_id, :city, :address1, :address2, :telephone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
 end
