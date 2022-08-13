@@ -4,7 +4,7 @@ class BuyerShipping
 
 
   with_options presence: true do
-    validates :user_id, :city, :address1
+    validates :user_id, :city, :address1, :token
     validates :prefecture_id, numericality: {only_integer: true, other_than: 1 , message: "can't be blank"}
     validates :zip_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :telephone, format: {with: /\A\d{10,11}\z/, message: "is invalid. Can't Include hyphen(-)"}
