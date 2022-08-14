@@ -2,13 +2,10 @@ class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :find_item, only: [:index, :create]
   before_action :check_user, only: [:index]
+  before_action :check_item, only: [:index, :create]
 
   def index
-    if @item.buyer.present?
-      redirect_to root_path
-    else
       @buyer_shipping = BuyerShipping.new
-    end
   end
 
   def new
@@ -45,4 +42,9 @@ class BuyersController < ApplicationController
   def check_user
     redirect_to root_path if current_user.id == @item.user.id
   end
+
+  def check_item
+    redirect_to root_path if @item.buyer.present?
+  end
+
 end
