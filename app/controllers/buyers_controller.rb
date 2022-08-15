@@ -8,9 +8,6 @@ class BuyersController < ApplicationController
       @buyer_shipping = BuyerShipping.new
   end
 
-  def new
-  end
-
   def create
     @buyer_shipping = BuyerShipping.new(buyer_params)
     if @buyer_shipping.valid?
