@@ -3,7 +3,7 @@ class BuyerShipping
   attr_accessor :user_id, :item_id, :zip_code, :prefecture_id, :city, :address1, :address2, :telephone, :token
 
   with_options presence: true do
-    validates :user_id, :city, :address1, :token
+    validates :user_id, :city, :address1, :token, :item_id
     validates :prefecture_id, numericality: { only_integer: true, other_than: 1, message: "can't be blank" }
     validates :zip_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :telephone, format: { with: /\A\d{10,11}\z/, message: "is invalid. Can't Include hyphen(-)" }
