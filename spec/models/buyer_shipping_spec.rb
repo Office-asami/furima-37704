@@ -4,7 +4,9 @@ RSpec.describe BuyerShipping, type: :model do
   describe '購買情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      @buyer_shipping = FactoryBot.build(:buyer_shipping, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @buyer_shipping = FactoryBot.build(:buyer_shipping, user_id: user.id, item_id: item.id)
+      sleep 0.1 # 0.1秒待機 負荷による処理エラーを避けるために記述
     end
 
     context '内容に問題ない場合' do
@@ -67,6 +69,16 @@ RSpec.describe BuyerShipping, type: :model do
         @buyer_shipping.token = nil
         @buyer_shipping.valid?
         expect(@buyer_shipping.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐づいていなければ購入できない' do
+        @buyer_shipping.user_id = nil
+        @buyer_shipping.valid?
+        expect(@buyer_shipping.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐づいていなければ購入できない' do
+        @buyer_shipping.item_id = nil
+        @buyer_shipping.valid?
+        expect(@buyer_shipping.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
