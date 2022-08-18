@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: furima_37704_production
-  username: furima_37704
-  password: <%= ENV['FURIMA_37704_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
